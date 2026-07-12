@@ -1,0 +1,768 @@
+# ExpenseFlow
+## Product Requirements Document (PRD)
+
+Version: 1.0
+Platform: Android
+Architecture: Native Android
+Tech Stack: Kotlin + Jetpack Compose + Room Database
+Target SDK: Latest Stable
+Min SDK: 26+
+
+---
+
+# 1. Product Vision
+
+ExpenseFlow is a premium personal finance application that helps users:
+
+- Track monthly income
+- Track daily expenses
+- Monitor savings goals
+- View financial analytics through charts
+- Export reports as PDF
+- Reset financial cycle every month
+
+The application should feel modern, premium, smooth, and polished.
+
+The UI should resemble modern fintech products rather than a student project.
+
+Design Inspiration:
+
+- CRED
+- Jupiter
+- INDmoney
+- Revolut
+- Monzo
+- Wealthsimple
+
+---
+
+# 2. Product Goals
+
+Primary Goals:
+
+1. Fast expense entry
+2. Beautiful financial dashboard
+3. Visual spending insights
+4. Goal tracking
+5. PDF reporting
+6. Offline-first architecture
+
+Success Metrics:
+
+- Add expense in under 5 seconds
+- App launch under 2 seconds
+- Zero data loss
+- Smooth 60 FPS animations
+
+---
+
+# 3. User Persona
+
+## Persona 1
+
+Name: Rahul
+
+Age: 24
+
+Profession:
+Software Engineer
+
+Goals:
+
+- Track salary
+- Control spending
+- Save for gadgets
+
+Pain Points:
+
+- Expenses scattered
+- No monthly visibility
+- Hard to save money
+
+---
+
+## Persona 2
+
+Name: Priya
+
+Age: 28
+
+Profession:
+Marketing Executive
+
+Goals:
+
+- Track personal finances
+- Save for vacations
+- Export reports
+
+Pain Points:
+
+- Manual calculations
+- Poor finance apps
+
+---
+
+# 4. Core Features
+
+---
+
+## Feature 1
+
+Monthly Income Setup
+
+User can:
+
+- Set monthly income
+- Edit income
+- Update income
+
+Example:
+
+Income = ₹50,000
+
+Stored locally.
+
+---
+
+## Feature 2
+
+Expense Management
+
+CRUD Operations
+
+Create Expense
+
+Fields:
+
+- Title
+- Amount
+- Category
+- Date
+- Notes
+
+Categories:
+
+- Food
+- Transport
+- Shopping
+- Bills
+- Entertainment
+- Health
+- Education
+- Other
+
+Actions:
+
+- Add
+- Update
+- Delete
+- View
+
+---
+
+## Feature 3
+
+Dashboard
+
+Displays:
+
+Monthly Income
+
+Total Expenses
+
+Remaining Balance
+
+Savings Goal Progress
+
+Monthly Savings
+
+Recent Transactions
+
+Quick Actions
+
+---
+
+## Feature 4
+
+Goal Tracking
+
+User can create goals.
+
+Example:
+
+Goal:
+MacBook
+
+Target:
+₹120,000
+
+Current Savings:
+₹45,000
+
+Progress:
+37.5%
+
+Features:
+
+- Create Goal
+- Update Goal
+- Delete Goal
+- Track Progress
+
+---
+
+## Feature 5
+
+Analytics
+
+Charts
+
+Expense By Category
+
+Monthly Trend
+
+Income vs Expense
+
+Goal Progress
+
+Visualization:
+
+- Pie Chart
+- Donut Chart
+- Bar Chart
+- Line Chart
+
+---
+
+## Feature 6
+
+PDF Reports
+
+Export:
+
+Daily Report
+
+Weekly Report
+
+Monthly Report
+
+Custom Range Report
+
+Contents:
+
+Income
+
+Expenses
+
+Balance
+
+Goals
+
+Charts
+
+Summary
+
+---
+
+## Feature 7
+
+Monthly Reset
+
+User can reset:
+
+Income
+
+Expenses
+
+Goals
+
+Analytics
+
+Reports
+
+Confirmation Required:
+
+"Are you sure?"
+
+Data archived before reset.
+
+---
+
+# 5. Non Functional Requirements
+
+Performance
+
+- App startup < 2 seconds
+- Smooth scrolling
+- 60 FPS animations
+
+Security
+
+- No internet required
+- Data stored locally
+- Encrypted preferences
+
+Reliability
+
+- No crashes
+- State restoration
+
+Maintainability
+
+- Clean Architecture
+- MVVM
+- Modular code
+
+---
+
+# 6. UI/UX Requirements
+
+DO NOT CREATE BASIC MATERIAL DEMO UI
+
+Design Requirements:
+
+- Fintech Style
+- Premium Colors
+- Glassmorphism
+- Soft Shadows
+- Gradient Cards
+- Micro Animations
+- Motion Layout Effects
+- Dynamic Charts
+
+Theme:
+
+Dark First
+
+Primary:
+#6C63FF
+
+Secondary:
+#00D4FF
+
+Success:
+#00C853
+
+Danger:
+#FF5252
+
+Background:
+#0F1117
+
+Surface:
+#171923
+
+Cards:
+#202433
+
+Text:
+#FFFFFF
+
+Subtext:
+#A7A9BE
+
+---
+
+# 7. Screen Flow
+
+Splash
+
+↓
+
+Onboarding
+
+↓
+
+Income Setup
+
+↓
+
+Dashboard
+
+├── Expenses
+├── Goals
+├── Analytics
+├── Reports
+└── Settings
+
+---
+
+# 8. User Flow Diagram
+
+                    ┌───────────┐
+                    │   Splash  │
+                    └─────┬─────┘
+                          │
+                          ▼
+                   ┌─────────────┐
+                   │ Onboarding  │
+                   └─────┬───────┘
+                         │
+                         ▼
+                  ┌──────────────┐
+                  │ Set Income   │
+                  └─────┬────────┘
+                        │
+                        ▼
+                 ┌───────────────┐
+                 │ Dashboard     │
+                 └───┬─────┬─────┘
+                     │     │
+        ┌────────────┘     └───────────┐
+        ▼                              ▼
+ ┌─────────────┐               ┌────────────┐
+ │ Expenses    │               │ Goals      │
+ └─────┬───────┘               └─────┬──────┘
+       │                             │
+       ▼                             ▼
+ Create/Edit/Delete           Create/Edit/Delete
+
+                     ▼
+             ┌─────────────┐
+             │ Analytics   │
+             └──────┬──────┘
+                    │
+                    ▼
+             ┌─────────────┐
+             │ Reports PDF │
+             └──────┬──────┘
+                    │
+                    ▼
+             ┌─────────────┐
+             │ Reset Data  │
+             └─────────────┘
+
+---
+
+# 9. System Architecture
+
+Clean Architecture
+
+Presentation Layer
+
+- Compose Screens
+- ViewModels
+- UI State
+
+Domain Layer
+
+- UseCases
+- Business Logic
+
+Data Layer
+
+- Repository
+- Room Database
+- Data Sources
+
+Architecture:
+
+UI
+↓
+ViewModel
+↓
+UseCase
+↓
+Repository
+↓
+Room Database
+
+---
+
+# 10. Database Design
+
+Table: income
+
+income_id
+amount
+created_at
+
+---
+
+Table: expense
+
+expense_id
+title
+amount
+category
+notes
+date
+created_at
+
+---
+
+Table: goals
+
+goal_id
+title
+target_amount
+saved_amount
+created_at
+
+---
+
+Table: archive
+
+archive_id
+month
+year
+json_backup
+created_at
+
+---
+
+# 11. Recommended Libraries
+
+Dependency Injection
+
+- Hilt
+
+Navigation
+
+- Navigation Compose
+
+Charts
+
+- Vico Charts
+
+PDF
+
+- Android PdfDocument
+
+Animations
+
+- Lottie
+- Compose Animation
+
+Persistence
+
+- Room
+
+Async
+
+- Coroutines
+- Flow
+
+Preferences
+
+- DataStore
+
+Logging
+
+- Timber
+
+---
+
+# 12. Folder Structure
+
+com.expenseflow
+
+├── core
+│   ├── ui
+│   ├── theme
+│   ├── utils
+│   └── common
+│
+├── data
+│   ├── local
+│   ├── repository
+│   └── mapper
+│
+├── domain
+│   ├── model
+│   ├── repository
+│   └── usecase
+│
+├── presentation
+│   ├── dashboard
+│   ├── expense
+│   ├── goals
+│   ├── reports
+│   ├── analytics
+│   └── settings
+│
+└── di
+
+---
+
+# 13. Development Roadmap
+
+PHASE 1
+
+Project Setup
+
+Deliverables
+
+- Clean Architecture
+- Navigation
+- Theme
+- Hilt
+- Room
+- DataStore
+
+Commit:
+
+feat(core): initialize project architecture and foundation setup
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 2
+
+Income Module
+
+Deliverables
+
+- Set Income
+- Edit Income
+- Persist Income
+
+Commit:
+
+feat(income): implement monthly income management
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 3
+
+Expense Module
+
+Deliverables
+
+- CRUD Expense
+- Categories
+- Validation
+
+Commit:
+
+feat(expense): implement complete expense management module
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 4
+
+Dashboard
+
+Deliverables
+
+- Financial Summary
+- Remaining Balance
+- Recent Expenses
+
+Commit:
+
+feat(dashboard): implement finance overview dashboard
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 5
+
+Goal Tracking
+
+Deliverables
+
+- Create Goal
+- Progress Tracking
+
+Commit:
+
+feat(goals): implement savings goal management
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 6
+
+Analytics
+
+Deliverables
+
+- Pie Charts
+- Line Charts
+- Monthly Analytics
+
+Commit:
+
+feat(analytics): implement spending analytics and visual insights
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 7
+
+PDF Reports
+
+Deliverables
+
+- Export PDF
+- Custom Range Reports
+
+Commit:
+
+feat(reports): implement PDF report generation
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 8
+
+Monthly Reset
+
+Deliverables
+
+- Archive Data
+- Reset Data
+
+Commit:
+
+feat(reset): implement monthly archive and reset workflow
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 9
+
+Premium UI Polish
+
+Deliverables
+
+- Animations
+- Micro Interactions
+- Loading States
+- Empty States
+
+Commit:
+
+feat(ui): implement premium fintech user experience
+
+WAIT FOR USER APPROVAL
+
+---
+
+PHASE 10
+
+Production Release
+
+Deliverables
+
+- Testing
+- Optimization
+- Bug Fixes
+
+Commit:
+
+chore(release): prepare production ready build v1.0.0
+
+END

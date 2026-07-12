@@ -1,0 +1,368 @@
+# PureDraft - Android Notes App (Jetpack Compose + Kotlin)
+
+You are a senior Android engineer and UI/UX architect.
+
+Build a production-quality Android notes application named **PureDraft** using modern Android development practices.
+
+---
+
+# App Information
+
+* App Name: PureDraft
+* Package Name: com.puredraft.notes
+
+---
+
+# Tech Stack
+
+Use:
+
+* Kotlin
+* Jetpack Compose
+* Material 3
+* Room Database
+* MVVM Architecture
+* Repository Pattern
+* StateFlow
+* Navigation Compose
+* Hilt Dependency Injection
+* Coroutines
+* DataStore Preferences
+* Biometric Authentication API
+* Android Splash Screen API
+
+Project must follow clean scalable architecture.
+
+---
+
+# Design Requirements
+
+Design style:
+
+* Glassmorphism UI
+* Frosted glass translucent cards
+* Backdrop blur effect
+* Thin subtle white border highlights
+* Layered depth
+* Soft glowing gradients
+* Premium modern UI
+* Smooth animations
+* Responsive spacing
+* Elegant typography
+
+Dark mode and light mode must automatically follow system theme.
+
+Use proper:
+
+* elevation
+* blur
+* transparency
+* animations
+* shadows
+* rounded corners
+* spacing hierarchy
+
+UI/UX must feel like a premium modern productivity app.
+
+---
+
+# Core Features
+
+## 1. Splash Screen
+
+Create:
+
+* animated splash screen
+* app logo animation
+* smooth transition to home screen
+
+---
+
+## 2. Home Screen
+
+Features:
+
+* list all notes
+* beautiful glassmorphism note cards
+* floating action button at bottom right
+* empty state UI
+* search bar
+* sorting options
+* recent notes section
+* skeleton loading animation while loading data
+
+Locked notes:
+
+* show lock icon
+* do not show note preview content
+* show blurred placeholder instead
+
+---
+
+## 3. Create/Edit Note Screen
+
+Features:
+
+* auto save while typing
+* create note
+* update note
+* delete note
+* smooth keyboard behavior
+* rich text editor toolbar
+
+Formatting support:
+
+* heading
+* bold
+* italic
+* underline
+* strikethrough
+* bullet points
+* checklist
+* quote block
+* code block
+* text colors
+* alignment options
+
+Use modern compose rich text handling.
+
+---
+
+## 4. Note Security
+
+Allow users to:
+
+* lock notes using PIN
+* unlock using biometric authentication if available
+* fallback to PIN if biometric unavailable
+
+Security requirements:
+
+* encrypted storage for PIN
+* biometric prompt integration
+* protected note opening
+* protected deletion for locked notes
+
+If locked:
+
+* note preview hidden
+* content inaccessible without authentication
+
+---
+
+## 5. Note Selection
+
+Interaction:
+
+* click note → open note
+* long press for 3 seconds → selection mode
+* multi-select support
+* delete selected notes
+
+If deleting locked note:
+
+* require biometric or PIN verification first
+
+---
+
+## 6. Animations
+
+Implement:
+
+* shared transitions
+* fade animations
+* scale animations
+* FAB animations
+* shimmer skeleton loading
+* smooth screen transitions
+* swipe animations
+
+Animations should feel smooth and premium.
+
+---
+
+# Database
+
+Use Room Database.
+
+Suggested entities:
+
+## NoteEntity
+
+Fields:
+
+* id
+* title
+* content
+* createdAt
+* updatedAt
+* isLocked
+* isPinned
+* noteColor
+* formattingData
+
+Create:
+
+* DAO
+* Repository
+* ViewModel
+* UseCases if needed
+
+---
+
+# Folder Structure
+
+Follow clean modular structure:
+
+com.puredraft.notes
+│
+├── data
+├── domain
+├── presentation
+├── ui
+├── components
+├── navigation
+├── utils
+├── di
+
+Use scalable architecture suitable for production apps.
+
+---
+
+# Development Instructions
+
+VERY IMPORTANT:
+
+Build the app phase-wise.
+
+At the end of every phase:
+
+1. explain what was completed
+2. generate professional git commit message
+3. mention next phase plan
+
+---
+
+# Development Phases
+
+## Phase 1
+
+Project setup
+Dependencies
+Theme system
+Navigation
+Base architecture
+Splash screen
+
+## Phase 2
+
+Room database
+Repository
+Home screen UI
+List rendering
+Skeleton loading
+
+## Phase 3
+
+Create/edit note screen
+Auto-save
+Rich text formatting
+
+## Phase 4
+
+Lock notes
+PIN authentication
+Biometric authentication
+
+## Phase 5
+
+Animations
+Polish
+Optimization
+Error handling
+Accessibility
+Performance improvements
+
+## Phase 6
+
+Testing
+Code cleanup
+Final production review
+
+---
+
+# Code Quality Rules
+
+* Use latest stable APIs
+* Avoid deprecated APIs
+* Write reusable composables
+* Follow SOLID principles
+* Use state hoisting properly
+* Use immutable UI states
+* Add comments only where needed
+* Keep code modular and maintainable
+* Avoid monolithic composables
+* Follow Android best practices
+
+---
+
+# UI/UX Principles
+
+Follow:
+
+* visual hierarchy
+* accessibility
+* touch-friendly spacing
+* smooth interactions
+* minimal clutter
+* consistency
+* modern typography
+* premium mobile experience
+
+---
+
+# Additional Requirements
+
+* Use Compose previews
+* Handle configuration changes
+* Handle process death
+* Add proper loading/error states
+* Offline-first behavior
+* Smooth scrolling performance
+* Use LazyColumn optimizations
+* Material 3 dynamic colors support
+* Proper permission handling
+* Edge-to-edge UI
+
+---
+
+# Git Workflow
+
+After every meaningful implementation:
+
+* generate clean professional git commit message
+* use semantic commit style
+
+Examples:
+
+* feat(notes): implement room database layer
+* feat(auth): add biometric note protection
+* ui(home): create glassmorphism note cards
+* refactor(editor): optimize rich text state handling
+
+---
+
+# Output Format
+
+For every phase provide:
+
+1. overview
+2. implementation steps
+3. complete code
+4. file structure
+5. dependencies added
+6. testing instructions
+7. git commit message
+8. next phase roadmap
+
+Start with Phase 1 only.

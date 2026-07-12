@@ -1,0 +1,780 @@
+# SkyCast - Production Ready Weather Application
+
+## Project Overview
+
+**App Name:** SkyCast  
+**Package Name:** com.buildstack.skycast  
+**Platform:** Android  
+**Language:** Kotlin  
+**UI Framework:** Jetpack Compose  
+**Architecture:** MVVM + Clean Architecture  
+**Networking:** Retrofit + OkHttp  
+**Dependency Injection:** Hilt  
+**Database:** Room Database  
+**Image Loading:** Coil  
+**Navigation:** Navigation Compose  
+**API Provider:** OpenWeather API  
+**Minimum SDK:** 26 (Android 8.0)  
+**Target SDK:** Latest Stable  
+**Build System:** Gradle Kotlin DSL
+
+---
+
+# PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+## Vision
+
+SkyCast is a premium weather intelligence application that delivers real-time weather conditions, forecasts, and air quality insights through a highly polished, modern dark-themed experience.
+
+Unlike typical weather demo applications, SkyCast focuses on:
+
+- Premium visual design
+- Smooth animations
+- Rich weather insights
+- Air quality intelligence
+- Fast performance
+- Offline support
+- Global location support
+
+---
+
+# Target Users
+
+### Primary Users
+
+- Daily weather checkers
+- Travelers
+- Outdoor enthusiasts
+- Commuters
+- Health-conscious users monitoring AQI
+
+### Secondary Users
+
+- Students
+- Weather hobbyists
+- International users needing multilingual support
+
+---
+
+# Core Features
+
+## Weather
+
+### Current Weather
+
+- Current temperature
+- Feels like temperature
+- Min/Max temperature
+- Humidity
+- Pressure
+- Wind speed
+- Wind direction
+- Visibility
+- Cloud coverage
+- Sunrise
+- Sunset
+- Weather condition
+- Weather icon
+
+---
+
+### Forecast
+
+- 5 Day Forecast
+- 3 Hour Forecast Intervals
+- Daily Summary Forecast
+- Temperature Trends
+- Weather Timeline
+
+---
+
+## Air Quality
+
+### Current AQI
+
+- AQI Index
+- PM2.5
+- PM10
+- Ozone
+- Nitrogen Dioxide
+- Sulfur Dioxide
+- Carbon Monoxide
+- Ammonia
+- Nitric Oxide
+
+### AQI Forecast
+
+- Upcoming AQI Predictions
+- AQI Status Levels
+
+### AQI History
+
+- Historical Air Quality Data
+
+---
+
+## Location Services
+
+### Search Location
+
+- Search by city
+- Search by country
+- Search suggestions
+
+### Geocoding
+
+- City → Coordinates
+- Coordinates → Address
+
+### GPS Location
+
+- Detect current location
+- Auto weather update
+
+---
+
+## Settings
+
+### Units
+
+Metric
+- Celsius
+- m/s
+
+Imperial
+- Fahrenheit
+- mph
+
+Standard
+- Kelvin
+
+---
+
+### Language Support
+
+- English
+- Hindi
+- Bengali
+- Spanish
+- French
+- German
+- Japanese
+- Korean
+- All OpenWeather Supported Languages
+
+---
+
+## Favorites
+
+- Save favorite cities
+- Quick city switching
+- Recent searches
+
+---
+
+## Offline Support
+
+- Cache latest weather
+- Cache forecasts
+- Cache AQI data
+- Show last updated timestamp
+
+---
+
+## Notifications (Future Ready)
+
+- Severe weather alerts
+- Rain alerts
+- AQI alerts
+
+---
+
+# Non Functional Requirements
+
+### Performance
+
+- Cold start < 2 sec
+- API response render < 500 ms
+- Smooth 60 FPS animations
+
+### Reliability
+
+- Offline cache support
+- Retry mechanism
+- Graceful error handling
+
+### Security
+
+- API key stored in BuildConfig
+- Proguard enabled
+- HTTPS only
+
+---
+
+# TECHNICAL REQUIREMENTS DOCUMENT (TRD)
+
+## Architecture
+
+```text
+Presentation Layer
+│
+├── UI (Compose)
+├── ViewModels
+├── UI State
+│
+Domain Layer
+│
+├── Use Cases
+├── Repository Contracts
+├── Models
+│
+Data Layer
+│
+├── Retrofit APIs
+├── DTOs
+├── Repository Implementations
+├── Room Database
+└── Mappers
+```
+
+---
+
+## Project Structure
+
+```text
+com.buildstack.skycast
+
+├── core
+│   ├── network
+│   ├── database
+│   ├── utils
+│   ├── ui
+│   └── constants
+│
+├── data
+│   ├── remote
+│   │   ├── api
+│   │   ├── dto
+│   │   └── source
+│   │
+│   ├── local
+│   │   ├── dao
+│   │   ├── entity
+│   │   └── database
+│   │
+│   └── repository
+│
+├── domain
+│   ├── model
+│   ├── repository
+│   └── usecase
+│
+├── presentation
+│   ├── splash
+│   ├── home
+│   ├── search
+│   ├── details
+│   ├── airquality
+│   ├── favorites
+│   └── settings
+│
+└── di
+```
+
+---
+
+# OpenWeather Endpoints
+
+## Current Weather
+
+```text
+/data/2.5/weather
+```
+
+## Forecast
+
+```text
+/data/2.5/forecast
+```
+
+## Air Pollution
+
+```text
+/data/2.5/air_pollution
+```
+
+## AQI Forecast
+
+```text
+/data/2.5/air_pollution/forecast
+```
+
+## AQI History
+
+```text
+/data/2.5/air_pollution/history
+```
+
+## Geocoding
+
+```text
+/geo/1.0/direct
+```
+
+## Reverse Geocoding
+
+```text
+/geo/1.0/reverse
+```
+
+---
+
+# ROOM DATABASE SCHEMA
+
+## Favorite Cities
+
+```sql
+Table: favorite_cities
+
+id INTEGER PRIMARY KEY
+city_name TEXT
+country TEXT
+lat DOUBLE
+lon DOUBLE
+created_at LONG
+```
+
+---
+
+## Recent Searches
+
+```sql
+Table: recent_searches
+
+id INTEGER PRIMARY KEY
+city_name TEXT
+country TEXT
+lat DOUBLE
+lon DOUBLE
+searched_at LONG
+```
+
+---
+
+## Cached Weather
+
+```sql
+Table: weather_cache
+
+id INTEGER PRIMARY KEY
+city_name TEXT
+weather_json TEXT
+updated_at LONG
+```
+
+---
+
+## Cached Forecast
+
+```sql
+Table: forecast_cache
+
+id INTEGER PRIMARY KEY
+city_name TEXT
+forecast_json TEXT
+updated_at LONG
+```
+
+---
+
+## Cached AQI
+
+```sql
+Table: aqi_cache
+
+id INTEGER PRIMARY KEY
+city_name TEXT
+aqi_json TEXT
+updated_at LONG
+```
+
+---
+
+## App Settings
+
+```sql
+Table: app_settings
+
+id INTEGER PRIMARY KEY
+
+temperature_unit TEXT
+wind_unit TEXT
+language TEXT
+theme TEXT
+
+updated_at LONG
+```
+
+---
+
+# APP FLOW
+
+## Launch Flow
+
+```text
+Splash
+   │
+   ▼
+Permission Check
+   │
+   ├── Granted
+   │      ▼
+   │  Current Location
+   │      ▼
+   │   Home
+   │
+   └── Denied
+          ▼
+     Search City
+          ▼
+         Home
+```
+
+---
+
+## Main Navigation
+
+```text
+Home
+│
+├── Search
+├── Weather Details
+├── Air Quality
+├── Favorites
+└── Settings
+```
+
+---
+
+# PREMIUM UI / UX BRIEF
+
+## Design Goal
+
+SkyCast should feel like a premium SaaS product, not a student weather project.
+
+The design language should resemble:
+
+- Apple Weather
+- Nothing Weather
+- Arc Browser aesthetics
+- Linear Design System
+- Raycast polish
+
+---
+
+# Visual Direction
+
+## Background
+
+```text
+Pure Black (#000000)
+
+Subtle Animated Gradient Fog Layers
+
+Deep Atmospheric Effects
+
+Weather-based Dynamic Backgrounds
+```
+
+Examples:
+
+- Rain → flowing droplets
+- Snow → floating particles
+- Sunny → warm glow
+- Cloudy → moving fog
+
+---
+
+## Weather Hero Card
+
+Large immersive card
+
+Contains:
+
+- Massive temperature
+- 3D weather illustration
+- Condition label
+- Location
+- Time
+
+Card Height:
+
+```text
+320dp+
+```
+
+Rounded:
+
+```text
+32dp
+```
+
+---
+
+## Dynamic Weather Illustrations
+
+Use premium 3D weather assets
+
+Examples:
+
+- Sun
+- Moon
+- Rain cloud
+- Thunderstorm
+- Snow
+
+Soft lighting
+Glass reflections
+Depth effects
+
+---
+
+## Micro Interactions
+
+### Every Tap
+
+```text
+Scale 0.98
+
+Spring Back Animation
+```
+
+---
+
+### Page Transitions
+
+```text
+Shared Element
+Fade Through
+Material Motion
+```
+
+---
+
+### Weather Updates
+
+```text
+Count Up Temperature Animation
+
+AQI Gauge Animation
+
+Weather Icon Morphing
+```
+
+---
+
+# Screens
+
+## Splash Screen
+
+Full-screen animated weather orb
+
+SkyCast Logo
+
+Tagline:
+
+```text
+Weather. Beautifully Forecasted.
+```
+
+---
+
+## Home Screen
+
+Hero Weather Card
+
+2 Column Grid:
+
+- Feels Like
+- Humidity
+- Wind
+- Visibility
+- Pressure
+- Clouds
+
+Forecast Carousel
+
+AQI Card
+
+Sunrise/Sunset Card
+
+---
+
+## Search Screen
+
+Large search bar
+
+Recent searches
+
+Trending cities
+
+Animated search results
+
+---
+
+## AQI Screen
+
+Large AQI gauge
+
+Health recommendations
+
+Pollutant breakdown
+
+Forecast timeline
+
+---
+
+## Settings
+
+Units
+
+Language
+
+Theme
+
+Cache Management
+
+About
+
+---
+
+# ANTIGRAVITY 2.0 MASTER PROMPT
+
+You are a Senior Android Architect, Staff Kotlin Engineer, Senior UI/UX Designer, and QA Lead.
+
+Build a production-grade Android application named SkyCast.
+
+Requirements:
+
+App Name: SkyCast
+Package: com.buildstack.skycast
+
+Technology Stack:
+- Kotlin
+- Jetpack Compose
+- MVVM
+- Clean Architecture
+- Hilt
+- Retrofit
+- OkHttp
+- Room Database
+- Navigation Compose
+- Kotlin Coroutines
+- Flow
+- Material 3
+
+Design Requirements:
+
+- Premium dark theme
+- Pure black background
+- Dynamic weather-aware backgrounds
+- Smooth animations
+- 3D weather illustrations
+- Large immersive weather cards
+- 32dp rounded corners
+- Linear.app level polish
+- Apple-quality spacing
+- No generic Material demo UI
+- No template-looking screens
+
+Performance Requirements:
+
+- 60 FPS animations
+- Offline-first architecture
+- Cache API responses
+- Proper loading skeletons
+- Error handling
+- Pull-to-refresh
+- Pagination where applicable
+
+Features:
+
+1. Splash Screen
+2. Current Weather
+3. Forecast
+4. Air Quality
+5. Search City
+6. Current Location
+7. Favorites
+8. Recent Searches
+9. Settings
+10. Multi Language
+11. Multiple Units
+12. Offline Cache
+
+Development Rules:
+
+PHASE 1
+- Project setup
+- Architecture setup
+- Dependency injection
+- Navigation
+- Commit:
+  "feat: initialize project architecture"
+
+PHASE 2
+- Weather APIs
+- Repository layer
+- Domain layer
+- Commit:
+  "feat: implement weather data layer"
+
+PHASE 3
+- Room Database
+- Favorites
+- Cache
+- Commit:
+  "feat: add local database support"
+
+PHASE 4
+- Home UI
+- Weather cards
+- Forecast UI
+- Commit:
+  "feat: build weather dashboard"
+
+PHASE 5
+- Search
+- Location services
+- Geocoding
+- Commit:
+  "feat: implement location search"
+
+PHASE 6
+- Air Quality module
+- AQI visualization
+- Commit:
+  "feat: add air quality intelligence"
+
+PHASE 7
+- Settings
+- Localization
+- Units
+- Commit:
+  "feat: implement app settings"
+
+PHASE 8
+- Animations
+- UI polish
+- Performance optimization
+- Commit:
+  "feat: premium UI polish"
+
+PHASE 9
+- Testing
+- Bug fixes
+- Release build
+- Commit:
+  "release: production ready build"
+
+Output complete production-ready source code with proper folder structure, architecture, comments, and best practices.

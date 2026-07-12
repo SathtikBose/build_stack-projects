@@ -1,0 +1,770 @@
+# Recall - Product Requirements Document (PRD)
+
+## Project Information
+
+### App Name
+Recall
+
+### Package Name
+com.buildstack.recall
+
+### Platform
+Android
+
+### Tech Stack
+- Kotlin
+- Jetpack Compose
+- Room Database
+- MVVM Architecture
+- Material Design 3
+- WorkManager
+- AlarmManager
+- Hilt Dependency Injection
+- Navigation Compose
+- DataStore Preferences
+- Coroutines & Flow
+
+### Build Target
+- Min SDK: 26
+- Target SDK: Latest Stable
+- Compile SDK: Latest Stable
+
+### Repository
+Private Git Repository
+
+Repository Name:
+Recall
+
+---
+
+# Product Vision
+
+Recall is a modern reminder application that helps users manage daily tasks, important events, and recurring reminders through a beautiful futuristic glassmorphic interface.
+
+The app focuses on:
+
+- Simplicity
+- Speed
+- Reliability
+- Offline-first experience
+- Elegant premium UI
+
+---
+
+# Core Features
+
+## Phase 1 MVP
+
+### Splash Screen
+
+Features:
+- Animated app logo
+- App name reveal animation
+- Navigate automatically to Home
+
+---
+
+### Home Screen
+
+Features:
+- Reminder list
+- Search bar
+- Reminder count
+- Quick statistics
+- Floating Add Button
+
+Display:
+- Title
+- Date
+- Time
+- Priority
+- Category
+- Completion Status
+
+---
+
+### Create Reminder
+
+Fields:
+
+- Title
+- Description
+- Date Picker
+- Time Picker
+- Priority
+- Category
+- Repeat Option
+
+Validation:
+- Title required
+- Date required
+- Time required
+
+---
+
+### Edit Reminder
+
+Features:
+- Update all fields
+- Save changes
+- Notification update
+
+---
+
+### Delete Reminder
+
+Features:
+- Swipe Delete
+- Delete Button
+- Confirmation Dialog
+
+---
+
+### Mark Complete
+
+Features:
+- Checkbox
+- Strike-through completed reminders
+- Move to completed section
+
+---
+
+### Local Notifications
+
+Features:
+- Exact reminder notifications
+- Open app when clicked
+- Persistent until dismissed
+
+---
+
+## Phase 2
+
+### Recurring Reminders
+
+Options:
+
+- Daily
+- Weekly
+- Monthly
+
+Uses:
+- WorkManager
+- AlarmManager fallback
+
+---
+
+### Search
+
+Search by:
+
+- Title
+- Description
+- Category
+
+Real-time filtering
+
+---
+
+### Sorting
+
+Sort By:
+
+- Date
+- Time
+- Priority
+- Created Date
+
+Ascending / Descending
+
+---
+
+### Categories
+
+Default:
+
+- Personal
+- Work
+- Study
+- Health
+- Finance
+
+Custom categories supported
+
+---
+
+### Priority Levels
+
+Low
+Medium
+High
+
+Visual Colors:
+
+Low:
+Blue Glow
+
+Medium:
+Purple Glow
+
+High:
+Red Glow
+
+---
+
+### Completed Reminders Screen
+
+Features:
+- View completed reminders
+- Restore reminder
+- Permanently delete
+
+---
+
+## Phase 3
+
+### Analytics Dashboard
+
+Display:
+
+- Total reminders
+- Completed reminders
+- Pending reminders
+- Completion rate
+
+---
+
+### Export Reminders
+
+Formats:
+
+- PDF
+- CSV
+
+---
+
+### Backup & Restore
+
+- Export Room DB
+- Import Room DB
+
+---
+
+# User Flow
+
+## First Launch
+
+Splash
+↓
+Home (Empty State)
+↓
+Create Reminder
+↓
+Reminder Saved
+↓
+Notification Scheduled
+
+---
+
+## Reminder Completion Flow
+
+Home
+↓
+Tap Complete
+↓
+Move to Completed
+↓
+Update Statistics
+
+---
+
+## Reminder Delete Flow
+
+Reminder
+↓
+Swipe/Delete
+↓
+Confirmation Dialog
+↓
+Delete
+↓
+Cancel Notification
+
+---
+
+## Reminder Trigger Flow
+
+Scheduled Time
+↓
+Notification Appears
+↓
+User Clicks
+↓
+Open Reminder Details
+
+---
+
+# Navigation Flow
+
+SplashScreen
+
+↓
+
+HomeScreen
+
+├── CreateReminderScreen
+├── EditReminderScreen
+├── ReminderDetailsScreen
+├── CompletedScreen
+├── SearchScreen
+├── SettingsScreen
+
+---
+
+# Database Design (Room)
+
+## Table: reminders
+
+```sql
+CREATE TABLE reminders(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    reminderDate TEXT NOT NULL,
+    reminderTime TEXT NOT NULL,
+    priority TEXT NOT NULL,
+    category TEXT NOT NULL,
+    repeatType TEXT NOT NULL,
+    isCompleted INTEGER NOT NULL,
+    createdAt INTEGER NOT NULL,
+    updatedAt INTEGER NOT NULL,
+    notificationId INTEGER NOT NULL
+);
+```
+
+### Entity
+
+```kotlin
+@Entity(tableName = "reminders")
+data class ReminderEntity(
+
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+
+    val title: String,
+
+    val description: String,
+
+    val reminderDate: String,
+
+    val reminderTime: String,
+
+    val priority: String,
+
+    val category: String,
+
+    val repeatType: String,
+
+    val isCompleted: Boolean,
+
+    val createdAt: Long,
+
+    val updatedAt: Long,
+
+    val notificationId: Int
+)
+```
+
+## DAO Operations
+
+```kotlin
+insertReminder()
+
+updateReminder()
+
+deleteReminder()
+
+getAllReminders()
+
+getCompletedReminders()
+
+searchReminders()
+
+sortReminders()
+
+markCompleted()
+
+restoreReminder()
+```
+
+---
+
+# Architecture
+
+```text
+Presentation Layer
+│
+├── Screens
+├── Components
+├── ViewModels
+│
+Domain Layer
+│
+├── UseCases
+├── Repository Interface
+│
+Data Layer
+│
+├── Room Database
+├── DAO
+├── Repository Impl
+│
+System Layer
+│
+├── WorkManager
+├── AlarmManager
+├── NotificationManager
+```
+
+---
+
+# Folder Structure
+
+```text
+com.buildstack.recall
+
+├── data
+│   ├── local
+│   │   ├── dao
+│   │   ├── entity
+│   │   └── database
+│   │
+│   └── repository
+│
+├── domain
+│   ├── model
+│   ├── repository
+│   └── usecase
+│
+├── presentation
+│   ├── splash
+│   ├── home
+│   ├── add
+│   ├── edit
+│   ├── completed
+│   ├── details
+│   ├── settings
+│   └── components
+│
+├── notification
+│
+├── worker
+│
+├── di
+│
+└── utils
+```
+
+---
+
+# UI/UX Brief
+
+## Design Style
+
+Futuristic Glassmorphism Dark Mode
+
+Inspired By:
+- Nothing OS
+- Arc Browser
+- Tesla UI
+- Cyberpunk Dashboard
+
+---
+
+## Background
+
+Gradient:
+
+Top:
+#0F0022
+
+Bottom:
+#1A0035
+
+Overlay:
+Soft radial glow effects
+
+---
+
+## Cards
+
+Properties:
+
+```text
+Corner Radius: 24dp
+
+Transparency: 30%
+
+Blur Effect: Heavy
+
+Border:
+1dp rgba(255,255,255,0.15)
+
+Shadow:
+Purple Glow
+```
+
+---
+
+## Buttons
+
+Shape:
+
+Pill
+
+Radius:
+50dp
+
+States:
+
+Normal:
+Purple Gradient
+
+Pressed:
+Bright Neon Purple
+
+---
+
+## Floating Action Button
+
+Style:
+
+Glass Orb
+
+Glow:
+
+#9B51E0
+
+Icon:
+
+White Plus
+
+---
+
+## Reminder Card Design
+
+Top Row:
+Title
+Priority Badge
+
+Middle:
+Description
+
+Bottom:
+Date
+Time
+Category
+
+Right:
+Completion Toggle
+
+---
+
+## Priority Colors
+
+Low:
+#82CAFF
+
+Medium:
+#9B51E0
+
+High:
+#FF4D6D
+
+---
+
+## Empty State
+
+Illustration:
+Floating Reminder Orb
+
+Text:
+
+"No Reminders Yet"
+
+Subtext:
+
+"Create your first reminder and stay organized."
+
+CTA:
+
+Create Reminder
+
+---
+
+## Animations
+
+- Splash Logo Animation
+- Card Fade In
+- Swipe Delete Animation
+- Floating Button Pulse
+- Navigation Transitions
+- Success Check Animation
+
+Duration:
+250ms–450ms
+
+---
+
+# Notification System
+
+## Notification Channel
+
+Reminder Channel
+
+Importance:
+High
+
+Features:
+
+- Sound
+- Vibration
+- Lock Screen Display
+- Tap Action
+
+---
+
+# Settings Screen
+
+Features:
+
+- Notification Toggle
+- Theme Toggle
+- Default Reminder Time
+- Export Data
+- Import Data
+- About App
+
+---
+
+# Git Workflow
+
+## Initial Commit
+
+```bash
+git init
+git branch -M main
+git add .
+git commit -m "Initial project setup"
+```
+
+---
+
+## Commit Rules
+
+Every stable feature must be committed.
+
+Examples:
+
+```bash
+git commit -m "Setup MVVM architecture"
+
+git commit -m "Implement splash screen"
+
+git commit -m "Create reminder database layer"
+
+git commit -m "Implement reminder creation flow"
+
+git commit -m "Add notification scheduling"
+
+git commit -m "Implement recurring reminders"
+
+git commit -m "Add search and sorting"
+
+git commit -m "Create completed reminders screen"
+
+git commit -m "Finalize production UI"
+
+git commit -m "Prepare release build"
+```
+
+---
+
+# Development Phases
+
+## Phase 1
+
+Foundation
+
+- Project setup
+- Theme
+- Navigation
+- Room Database
+- Home Screen
+- Add Reminder
+- Edit Reminder
+- Delete Reminder
+- Notifications
+
+Git Commit
+
+---
+
+## Phase 2
+
+Product Features
+
+- Search
+- Sorting
+- Categories
+- Priorities
+- Completed Screen
+- Recurring Reminders
+
+Git Commit
+
+---
+
+## Phase 3
+
+Polish
+
+- Animations
+- Dashboard
+- Export
+- Backup
+- Settings
+
+Git Commit
+
+---
+
+## Phase 4
+
+Production Release
+
+- Bug Fixes
+- Optimization
+- Testing
+- Proguard
+- Signed APK
+- Play Store Assets
+
+Final Git Commit
+
+---
+
+# Release Checklist
+
+- MVVM Architecture
+- Room Database
+- Offline First
+- Notification Reliability
+- Dark Mode
+- Responsive UI
+- Accessibility Support
+- Crash Free
+- Memory Optimized
+- Production Ready
+- Git Versioned
+- Signed Release Build

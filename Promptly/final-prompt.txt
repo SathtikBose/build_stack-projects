@@ -1,0 +1,692 @@
+# Promptly - AI Chat Android App
+
+## Project Overview
+
+### App Name
+Promptly
+
+### Package Name
+com.buildstack.promptly
+
+### Platform
+Android
+
+### Tech Stack
+- Kotlin
+- Jetpack Compose
+- Room Database
+- Retrofit
+- Kotlin Coroutines
+- MVVM Architecture
+- Navigation Compose
+- DataStore Preferences
+- Groq API
+- Material 3
+
+### Objective
+
+Promptly is a modern AI chat application inspired by ChatGPT with a cyberpunk-inspired futuristic interface. Users can create unlimited chats, interact with AI using the Groq API, store conversations locally using RoomDB, and manage chats without requiring authentication.
+
+The application must be production-ready, scalable, maintainable, and follow clean architecture principles.
+
+---
+
+# PRODUCT REQUIREMENTS DOCUMENT (PRD)
+
+## Core Features
+
+### Splash Screen
+
+#### Purpose
+Load all existing chats from RoomDB before entering the application.
+
+#### Components
+- App Logo
+- App Name
+- Progress Bar
+- Animated Percentage Counter (0-100)
+
+#### Behavior
+- Fetch chats from RoomDB
+- Show loading progress
+- Navigate automatically to Home Screen
+
+---
+
+### Home Screen
+
+#### Default Screen
+New Chat Screen
+
+#### Layout
+
+Top App Bar
+- Hamburger Menu
+- App Name
+
+Main Content
+- Center aligned prompt box
+- Send button
+
+Behavior
+- User enters prompt
+- Creates new chat automatically
+- Sends first message to AI
+- Generates Chat Title
+- Saves chat in RoomDB
+- Opens Chat Screen
+
+---
+
+### Chat Screen
+
+#### Features
+
+User Message Bubble
+- Right aligned
+- Neon accent color
+
+AI Message Bubble
+- Left aligned
+- Cyberpunk glass effect
+
+Typewriter Animation
+- Only while AI is generating
+
+Normal Loading
+- Previous messages load instantly
+
+Disable Input While Generating
+- TextField Disabled
+- Send Button Disabled
+
+Auto Scroll
+- Scroll to latest message
+
+Copy Message
+- Long press support
+
+Delete Chat
+- Option from overflow menu
+
+---
+
+### Navigation Drawer
+
+#### Content
+
+Chat History List
+
+Each Item
+- Generated Chat Name
+- Last Updated Time
+
+Bottom Section
+- Settings Button
+
+Behavior
+- Open any chat
+- Create new chat
+
+---
+
+### Settings Screen
+
+#### Features
+
+Theme Toggle
+- Dark Mode
+- Light Mode
+
+Danger Zone
+
+Clear All Chats
+- Confirmation Dialog
+
+App Information
+- Version
+- Package Name
+
+---
+
+# TECHNICAL REQUIREMENTS DOCUMENT (TRD)
+
+## Architecture
+
+Clean MVVM Architecture
+
+Presentation Layer
+│
+├── Screens
+├── Components
+├── Navigation
+└── ViewModels
+
+Domain Layer
+│
+├── Repository Interfaces
+├── Use Cases
+└── Models
+
+Data Layer
+│
+├── Room Database
+├── Retrofit
+├── DTOs
+├── Repositories
+└── DataStore
+
+---
+
+## Folder Structure
+
+app/
+│
+├── data/
+│   ├── local/
+│   ├── remote/
+│   ├── repository/
+│   └── datastore/
+│
+├── domain/
+│   ├── model/
+│   ├── repository/
+│   └── usecase/
+│
+├── presentation/
+│   ├── splash/
+│   ├── home/
+│   ├── chat/
+│   ├── settings/
+│   ├── components/
+│   └── navigation/
+│
+├── di/
+│
+├── ui/
+│   ├── theme/
+│   └── animation/
+│
+└── util/
+
+---
+
+# DATABASE SCHEMA
+
+## Chat Table
+
+Table Name:
+chat_table
+
+| Field | Type |
+|---------|---------|
+| chatId | Long |
+| title | String |
+| createdAt | Long |
+| updatedAt | Long |
+
+---
+
+## Message Table
+
+Table Name:
+message_table
+
+| Field | Type |
+|---------|---------|
+| messageId | Long |
+| chatId | Long |
+| role | String |
+| content | String |
+| timestamp | Long |
+
+Role Values
+
+- user
+- assistant
+
+---
+
+## Relationships
+
+One Chat
+→ Many Messages
+
+Foreign Key
+
+message.chatId
+references
+chat.chatId
+
+---
+
+# API DESIGN
+
+## Provider
+
+Groq
+
+Base URL
+
+https://api.groq.com/openai/v1/
+
+---
+
+## Endpoint
+
+POST
+
+/chat/completions
+
+---
+
+## Request
+
+{
+  "model":"llama-3.3-70b-versatile",
+  "messages":[
+    {
+      "role":"user",
+      "content":"Hello"
+    }
+  ]
+}
+
+---
+
+## Response
+
+{
+  "choices":[
+    {
+      "message":{
+        "content":"Hello!"
+      }
+    }
+  ]
+}
+
+---
+
+## Security
+
+API Key stored in:
+
+local.properties
+
+Never hardcode in source code.
+
+---
+
+# APPLICATION FLOW
+
+Splash Screen
+
+↓
+
+Load Chats
+
+↓
+
+New Chat Screen
+
+↓
+
+User Sends Prompt
+
+↓
+
+Create Chat
+
+↓
+
+Save User Message
+
+↓
+
+Call Groq API
+
+↓
+
+Receive Response
+
+↓
+
+Save AI Response
+
+↓
+
+Generate Chat Title
+
+↓
+
+Open Chat Screen
+
+↓
+
+User Continues Conversation
+
+↓
+
+Messages Stored In RoomDB
+
+↓
+
+Accessible From Drawer
+
+---
+
+# UI / UX BRIEF
+
+## Design Language
+
+Modern Gen-Z AI Product
+
+Inspired By
+- ChatGPT
+- Notion AI
+- Linear
+- Raycast
+- Arc Browser
+
+---
+
+## Theme
+
+Cyberpunk Glassmorphism
+
+Characteristics
+
+- Frosted Glass
+- Neon Glow
+- Dark Background
+- Floating Cards
+- Smooth Shadows
+- Rounded Corners
+
+---
+
+## Primary Colors
+
+Background
+#0A0A0F
+
+Card
+#15151D
+
+Primary Neon
+#00E5FF
+
+Secondary Neon
+#7B61FF
+
+Accent
+#FF00C8
+
+Text
+#FFFFFF
+
+Sub Text
+#9EA2B0
+
+---
+
+## Animations
+
+### Splash
+
+Logo Scale Animation
+
+Loading Bar Fill
+
+Percentage Counter
+
+---
+
+### Navigation
+
+Drawer Slide
+
+Screen Fade
+
+Smooth Shared Transitions
+
+---
+
+### Chat
+
+Message Fade In
+
+Message Slide Up
+
+Typewriter Effect
+
+Cursor Blink
+
+---
+
+### Buttons
+
+Micro Interaction
+
+Ripple
+
+Scale Effect
+
+---
+
+# CHAT TITLE GENERATION
+
+Prompt
+
+Generate a short title under 5 words for this conversation.
+
+Example
+
+User:
+How to learn Android Development
+
+Title:
+Learn Android
+
+Store title in Chat Table.
+
+---
+
+# BUILD FLOW
+
+## Phase 1
+
+Project Setup
+
+Deliverables
+
+- Compose Setup
+- Navigation
+- Theme
+- Splash Screen
+- Folder Structure
+
+Stable Build Output
+
+Git Commit:
+
+feat: initialize Promptly project architecture and splash screen
+
+---
+
+## Phase 2
+
+Room Database
+
+Deliverables
+
+- Chat Entity
+- Message Entity
+- DAO
+- Repository
+
+Stable Build Output
+
+Git Commit:
+
+feat: implement Room database for chats and messages
+
+---
+
+## Phase 3
+
+Groq API Integration
+
+Deliverables
+
+- Retrofit
+- DTO Models
+- Repository
+- Error Handling
+
+Stable Build Output
+
+Git Commit:
+
+feat: integrate Groq API with Retrofit
+
+---
+
+## Phase 4
+
+Chat System
+
+Deliverables
+
+- New Chat
+- Chat Screen
+- Message Persistence
+- Auto Scroll
+
+Stable Build Output
+
+Git Commit:
+
+feat: implement complete AI chat workflow
+
+---
+
+## Phase 5
+
+Navigation Drawer
+
+Deliverables
+
+- Chat History
+- Chat Switching
+- New Chat Button
+
+Stable Build Output
+
+Git Commit:
+
+feat: add chat drawer navigation system
+
+---
+
+## Phase 6
+
+Settings
+
+Deliverables
+
+- Theme Toggle
+- Clear Chats
+
+Stable Build Output
+
+Git Commit:
+
+feat: add settings and theme management
+
+---
+
+## Phase 7
+
+Polish & Production
+
+Deliverables
+
+- Animations
+- Loading States
+- Edge Cases
+- Performance Optimization
+
+Stable Build Output
+
+Git Commit:
+
+release: production ready Promptly v1.0
+
+---
+
+# ANTI-GRAVITY 2.0 MASTER PROMPT
+
+You are a Senior Android Engineer with 10+ years of experience.
+
+Build a complete production-ready Android application using:
+
+- Kotlin
+- Jetpack Compose
+- Room Database
+- Retrofit
+- Coroutines
+- MVVM
+- Navigation Compose
+- Material 3
+- DataStore
+
+Project Information:
+
+App Name:
+Promptly
+
+Package:
+com.buildstack.promptly
+
+API:
+Groq
+
+Ask user for API key during setup.
+
+Requirements:
+
+1. Follow the PRD and TRD exactly.
+2. Use Clean MVVM Architecture.
+3. Use repository pattern.
+4. Use dependency injection ready architecture.
+5. Use Material 3.
+6. Use RoomDB for all chat storage.
+7. Persist all conversations locally.
+8. Generate chat titles automatically.
+9. Disable input while AI response is generating.
+10. Use typewriter animation only for newly generated AI messages.
+11. Use smooth cyberpunk glassmorphism UI.
+12. Use Navigation Drawer with chat history.
+13. Add dark/light theme support.
+14. Add clear chats functionality.
+15. Use best coding practices.
+16. Handle network failures gracefully.
+17. Avoid placeholder implementations.
+18. Build phase-by-phase.
+19. After every stable phase output:
+    - Files created
+    - Files modified
+    - Testing checklist
+    - Git commit message
+20. Stop after each phase and wait for the user to type:
+    NEXT
+
+Do not proceed automatically.
+
+Generate real production-ready code.
+Avoid demo code.
+Avoid pseudo code.
+Avoid TODO placeholders.
+Avoid mock implementations.

@@ -1,0 +1,20 @@
+Food Ingredient and Nutrition Tracking Scanner
+Context:
+Consumers often find it difficult to quickly understand the
+ingredients and nutritional value of packaged food products while
+shopping. Although food labels provide this information, they are
+often complex and not easy to interpret at a glance
+Challenge:
+There is a need for a simple solution that allows users to easily
+identify food products and access clear information about
+ingredients, calories, and nutritional values, along with guidance
+that helps them make informed dietary choices.
+Goal:
+Develop a mobile application that allows users to scan food items
+using an image, QR code, or barcode scanner to retrieve ingredient
+lists, calories, and nutritional information from reliable databases.
+The application should also present helpful insights such as whether
+the product is generally safe to consume, should be eaten in
+moderation, or requires consideration for specific diets, allergies,
+or health conditions, along with other relevant nutritional details
+that assist users in making healthier food decisions.

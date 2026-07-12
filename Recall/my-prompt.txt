@@ -1,0 +1,76 @@
+i want to make a android app using kotlin and room db 
+app name - Recall 
+app package name - com.buildstack.recall
+description - a smiple reminder app 
+
+features 
+Splash Screen
+Home Screen with Reminder List
+Create New Reminder
+Edit Reminder
+Delete Reminder
+Mark Reminder as Completed
+Set Title for Reminder
+Add Description/Notes
+Select Date
+Select Time
+Notification Reminder Alert
+Recurring Reminders (Daily / Weekly / Monthly)
+View Completed Reminders
+Search Reminders
+Sort by Date or Time
+Priority Levels (Low, Medium, High)
+Categories/Tags
+Empty State Screen ("No Reminders Yet")
+Swipe to Delete
+Confirmation Dialog Before Delete
+Local Data Storage with Room Database
+
+ui/ux 
+### UI Design Prompt: Futuristic Glassmorphic Dark Mode
+
+#### Theme & Aesthetic
+* **Vibe:** Futuristic, sophisticated, data-driven, and sleek. It uses high-contrast glowing elements against an ultra-dark background to create depth and a premium, high-tech feel.
+* **Style:** Modern **Glassmorphism** mixed with **Neon Glow / Synthwave** undertones. Elements should have soft background blurs, subtle translucent borders, and glowing vector accents.
+
+---
+
+#### Color Palette
+* **Background:** Deep, dark midnight-purple gradient (e.g., transitioning from a near-black `#0F0022` to a rich, dark plum `#1A0035`). 
+* **Component Cards:** Translucent, glassmorphic dark purple with a heavy background blur (15px–20px) and a subtle, soft internal gradient (e.g., `#220044` at 40% opacity).
+* **Borders:** Ultra-thin, crisp borders for cards using a light purple or white with low opacity (e.g., `rgba(255, 255, 255, 0.15)`) to define edges without looking heavy.
+* **Primary Text & Main Icons:** Crisp, high-contrast pure white (`#FFFFFF`).
+* **Secondary Text & Muted Icons:** Soft, faded lavender-grey (`#A39BB0` to `#CCCCCC`) for secondary hierarchy.
+* **Accents & Glows:** Vibrant, luminous electric purples (`#9B51E0`) for active states, paired with soft neon blue/cyan (`#82CAFF`) for glowing data lines, data points, and active indicators.
+
+---
+
+#### Typography
+* **Font Family:** Clean, highly legible geometric Sans-Serif (e.g., SF Pro Display, Inter, or Roboto).
+* **Weights:** Primarily **Bold** for key data/numbers, **Medium** for section headers, and **Regular** for body text and descriptions.
+* **Hierarchy:**
+  * *Hero Numbers/Metrics:* Large, heavy, and striking (approx. 28pt–32pt, Bold) to make data like "24" or "67" immediately pop.
+  * *Section Headers:* Clean and prominent (approx. 18pt, Medium) with generous spacing.
+  * *Card Titles & Labels:* Compact and clear (approx. 12pt–14pt, Medium).
+  * *Micro-copy & Statuses:* Small, uppercase, or slightly muted text (approx. 10pt, Bold for dates/days; Regular for timestamps).
+
+---
+
+#### Key Visual Elements & Textures
+* **Gradients & Lighting:** Soft, ambient backlighting (radial blurs) behind text headers to create a "halo" or "wave of light" effect.
+* **UI Data Shading:** Line graphs and bar charts should use smooth vector curves with a vertical gradient fill that fades out towards the bottom, topped with bright, glowing data point markers.
+* **Pill-Shaped Components:** Buttons, active tabs, and version tags use heavily rounded, pill-shaped geometry rather than sharp corners.
+
+instructions 
+phase wise development 
+allways git commit after each stable build / features 
+use latest stable build 
+producton ready product 
+
+additional 
+android studio
+antigravity  2.0
+comand line tools , build tools , platform tools , 
+git is setuped and working make a private repo name Recall 
+
+ now generate the full PRD + TRD APP flow + database schema + ui/ux brief + build flow for antigravity give this to me in code block or markdown file 

@@ -1,0 +1,41 @@
+i want to make a notes app using jetpack compose android kotlin 
+design 
+Glassmorphism style, frosted glass effect, translucent container panels with backdrop blur, subtle thin white outer border highlight, soft background glow shining through, modern layered depth.
+
+app name - PureDraft
+package name - com.puredraft.notes
+
+tech stack 
+android kotlin jetpack compose 
+room database 
+
+features of the app 
+splash screen 
+home screen list of all the notes 
+bottom right plus icon to create a new note 
+click on note to open note screen 
+click and hold for 3 sec it will select and user can delete the note 
+we can lock the note using pin or biometric if present in the device 
+to delete a locked note user have to give the pin or biometric 
+note auto save user can edit update create 
+text formating like - 
+heading 
+underline 
+strickthrough
+italic 
+bold 
+buttles points 
+.... 
+dark mode and light depends on the system mode dark or light 
+animation 
+skeleton screens 
+locked notes no preview shows a lock icon 
+
+i am using antigravity 2.0 i have installed comand line , platform tools , build for android studio 
+i need a prompt for antigravity 2.0 
+
+instruction 
+ - professional git commit 
+ - phase wise development 
+ - use good ui/ux principals 
+

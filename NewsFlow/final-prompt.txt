@@ -1,0 +1,798 @@
+# NewsFlow - 
+
+## Project Overview
+
+**App Name:** NewsFlow
+
+**Package Name:** `com.buildstack.newsflow`
+
+**Platform:** Android
+
+**Language:** Kotlin
+
+**UI Framework:** Jetpack Compose
+
+**Architecture:** MVVM + Clean Architecture
+
+**API:** NewsAPI.org
+
+**API Key:**
+
+```kotlin
+const val NEWS_API_KEY = "b392f2f182d04b9b9aaf72c58135fe6e"
+```
+
+**Target SDK:** Android 16+
+
+**Min SDK:** Android 8.0 (API 26)
+
+---
+
+# Product Vision
+
+NewsFlow is a premium-looking modern news application designed with Glassmorphism and Liquid Glass UI principles.
+
+The goal is to create an app that feels like a premium social media application rather than a typical news reader.
+
+Users should experience:
+
+* Smooth animations
+* Immersive scrolling
+* Fast news consumption
+* Beautiful article reading experience
+* Instagram/Reels inspired Feed
+* Apple-inspired Glass UI
+* Material 3 Dynamic Colors
+
+---
+
+# Core Features
+
+## 1. Splash Screen
+
+### Purpose
+
+Initial loading screen while news data is fetched.
+
+### Features
+
+* Animated App Logo
+* NewsFlow Text Animation
+* Loading Progress Bar
+* Progress:
+
+  * 0 → 100%
+* Fetch Top Headlines
+* Navigate automatically
+
+### Animation
+
+* Fade In Logo
+* Scale Up Animation
+* Progress Bar Fill Animation
+
+---
+
+## 2. Top Headlines Screen
+
+### Purpose
+
+Display latest breaking news.
+
+### Features
+
+* Hero News Card
+* Horizontal Category Chips
+* Vertical News Cards
+* Pull To Refresh
+* Article Preview
+* Bookmark Option
+* Open Article
+
+### Categories
+
+* General
+* Technology
+* Business
+* Sports
+* Entertainment
+* Health
+* Science
+
+### Card Design
+
+Large rounded glass card
+
+Contents:
+
+* Image
+* Title
+* Source
+* Date
+* Read More Button
+
+---
+
+## 3. Search Screen
+
+### Purpose
+
+Search news articles.
+
+### Features
+
+* Animated Search Bar
+* Real-time Search
+* Debounce Search
+* Search History
+* Trending Searches
+* Empty State Animation
+
+Search Endpoint:
+
+```http
+/everything?q=keyword
+```
+
+---
+
+## 4. Feed Screen
+
+### Purpose
+
+Instagram-inspired endless news feed.
+
+### Features
+
+* Infinite Scroll
+* Edge-to-edge Cards
+* Auto Image Loading
+* Share Button
+* Copy Link Button
+* Read Later Button
+* Like Animation (UI only)
+
+### Interaction
+
+Single Tap
+
+```text
+Open Article
+```
+
+Long Press
+
+```text
+Copy Link
+```
+
+Share Icon
+
+```text
+Share News Link
+```
+
+Feed loads continuously.
+
+---
+
+## 5. Article Screen
+
+### Purpose
+
+Premium reading experience.
+
+### Features
+
+* Full Width Image
+* Dynamic Toolbar
+* Reading Progress Indicator
+* Large Typography
+* Source Information
+* Publish Date
+* Share Article
+* Open Original Source
+
+### Reading Mode
+
+* Immersive Mode
+* Edge-to-edge Layout
+
+---
+
+## 6. Settings Screen
+
+### Features
+
+### Appearance
+
+* Light Mode
+* Dark Mode
+* System Default
+
+### Typography
+
+Font Sizes:
+
+* Small
+* Medium
+* Large
+* Extra Large
+
+### Other
+
+* About App
+* Privacy Policy
+* App Version
+
+---
+
+# UI / UX Design System
+
+## Design Style
+
+### Glassmorphism + Liquid Glass
+
+Inspired by:
+
+* Apple VisionOS
+* iOS 26 Liquid Glass
+* Arc Browser
+* Threads
+
+---
+
+## Color Palette
+
+### Light Theme
+
+```text
+Background:
+#F8FAFC
+
+Primary:
+#2563EB
+
+Accent:
+#06B6D4
+
+Glass:
+rgba(255,255,255,0.15)
+```
+
+### Dark Theme
+
+```text
+Background:
+#09090B
+
+Primary:
+#60A5FA
+
+Accent:
+#22D3EE
+
+Glass:
+rgba(255,255,255,0.08)
+```
+
+---
+
+## Components
+
+### Bottom Navigation
+
+Liquid Glass Navigation Bar
+
+Features:
+
+* Floating
+* Blur Effect
+* Rounded Corners
+* Active Tab Glow
+
+Tabs:
+
+```text
+Top Headlines
+Search
+Feed
+Settings
+```
+
+---
+
+## Animations
+
+### Global
+
+Duration:
+
+```text
+250ms
+350ms
+500ms
+```
+
+### Transitions
+
+* Shared Element Transition
+* Fade Through
+* Scale Transition
+* Spring Animation
+
+### Feed
+
+* Card Lift Animation
+* Swipe Animation
+* Smooth Scroll
+
+---
+
+# App Flow
+
+```text
+Splash Screen
+       │
+       ▼
+Top Headlines
+       │
+ ┌─────┼─────┐
+ ▼     ▼     ▼
+Search Feed Settings
+         │
+         ▼
+     Article
+```
+
+---
+
+# Architecture
+
+```text
+Presentation Layer
+│
+├── Screens
+├── ViewModels
+├── Navigation
+│
+Domain Layer
+│
+├── UseCases
+├── Repository Interfaces
+│
+Data Layer
+│
+├── Retrofit
+├── Repository Impl
+├── DTO Models
+├── Local Preferences
+```
+
+---
+
+# API Integration
+
+## Top Headlines
+
+```http
+https://newsapi.org/v2/top-headlines
+```
+
+Parameters:
+
+```text
+country=in
+apiKey=API_KEY
+```
+
+---
+
+## Search
+
+```http
+https://newsapi.org/v2/everything
+```
+
+Parameters:
+
+```text
+q=keyword
+sortBy=publishedAt
+```
+
+---
+
+# Database Schema
+
+Room Database
+
+## Search History Table
+
+```sql
+SearchHistory
+
+id INTEGER PRIMARY KEY
+query TEXT
+timestamp LONG
+```
+
+---
+
+## User Preferences
+
+DataStore
+
+```kotlin
+ThemeMode
+
+LIGHT
+DARK
+SYSTEM
+```
+
+```kotlin
+FontSize
+
+SMALL
+MEDIUM
+LARGE
+XLARGE
+```
+
+---
+
+# Package Structure
+
+```text
+com.buildstack.newsflow
+
+├── data
+│   ├── remote
+│   ├── local
+│   ├── repository
+│
+├── domain
+│   ├── model
+│   ├── usecase
+│
+├── presentation
+│   ├── splash
+│   ├── headlines
+│   ├── search
+│   ├── feed
+│   ├── article
+│   ├── settings
+│
+├── navigation
+│
+├── ui
+│   ├── theme
+│   ├── components
+│
+└── di
+```
+
+---
+
+# Dependencies
+
+```kotlin
+Jetpack Compose
+Material 3
+Navigation Compose
+Hilt
+Retrofit
+OkHttp
+Gson
+Coil
+Room
+DataStore
+Coroutines
+Lottie
+Accompanist
+```
+
+---
+
+# Development Phases
+
+## Phase 1
+
+Project Setup
+
+### Deliverables
+
+* Clean Architecture
+* Navigation
+* Theme
+* DI Setup
+
+### Git Commit
+
+```bash
+git commit -m "feat: initialize NewsFlow architecture and project setup"
+```
+
+---
+
+## Phase 2
+
+Splash Screen
+
+### Deliverables
+
+* Animated Splash
+* Loading Logic
+
+### Git Commit
+
+```bash
+git commit -m "feat: implement animated splash screen with loading progress"
+```
+
+---
+
+## Phase 3
+
+Top Headlines
+
+### Deliverables
+
+* API Integration
+* Headlines Screen
+
+### Git Commit
+
+```bash
+git commit -m "feat: add top headlines screen and news api integration"
+```
+
+---
+
+## Phase 4
+
+Search
+
+### Deliverables
+
+* Search Screen
+* Search History
+
+### Git Commit
+
+```bash
+git commit -m "feat: implement news search and search history"
+```
+
+---
+
+## Phase 5
+
+Feed
+
+### Deliverables
+
+* Infinite Feed
+* Share News
+
+### Git Commit
+
+```bash
+git commit -m "feat: build immersive infinite news feed experience"
+```
+
+---
+
+## Phase 6
+
+Article Reader
+
+### Deliverables
+
+* Article Detail Screen
+
+### Git Commit
+
+```bash
+git commit -m "feat: create premium article reading experience"
+```
+
+---
+
+## Phase 7
+
+Settings
+
+### Deliverables
+
+* Theme Management
+* Font Size
+
+### Git Commit
+
+```bash
+git commit -m "feat: add settings screen with personalization options"
+```
+
+---
+
+## Phase 8
+
+Polish & Optimization
+
+### Deliverables
+
+* Animations
+* Bug Fixes
+* Performance
+
+### Git Commit
+
+```bash
+git commit -m "refactor: optimize performance and polish user experience"
+```
+
+---
+
+# Build Flow
+
+```text
+Create Project
+      │
+      ▼
+Setup Architecture
+      │
+      ▼
+Theme + Design System
+      │
+      ▼
+Navigation Setup
+      │
+      ▼
+API Integration
+      │
+      ▼
+Splash Screen
+      │
+      ▼
+Top Headlines
+      │
+      ▼
+Search
+      │
+      ▼
+Feed
+      │
+      ▼
+Article Screen
+      │
+      ▼
+Settings
+      │
+      ▼
+Animations
+      │
+      ▼
+Testing
+      │
+      ▼
+Release Build
+```
+
+# Antigravity 2.0 Master Prompt
+
+```markdown
+You are a Senior Android Engineer, Product Designer, Motion Designer, and Kotlin Architect.
+
+Build a production-ready Android application named NewsFlow.
+
+APP DETAILS
+
+Name: NewsFlow
+Package: com.buildstack.newsflow
+
+Tech Stack:
+- Kotlin
+- Jetpack Compose
+- MVVM
+- Clean Architecture
+- Hilt
+- Retrofit
+- Room
+- DataStore
+- Navigation Compose
+- Material 3
+
+API:
+NewsAPI.org
+
+API Key:
+b392f2f182d04b9b9aaf72c58135fe6e
+
+DESIGN REQUIREMENTS
+
+Do NOT create a generic Android demo UI.
+
+Create a premium modern application inspired by:
+
+- Apple VisionOS
+- iOS Liquid Glass
+- Arc Browser
+- Threads
+- Linear
+
+Use:
+
+- Glassmorphism
+- Floating Navigation
+- Blur Effects
+- Motion Design
+- Shared Element Transitions
+- Dynamic Material 3 Colors
+- Spring Animations
+- Skeleton Loading States
+
+SCREENS
+
+1. Splash Screen
+- Animated logo
+- Loading progress 0-100
+- Fetch news
+
+2. Top Headlines
+- Hero news card
+- Category chips
+- Glass cards
+- Pull refresh
+
+3. Search
+- Animated search bar
+- Search history
+- Debounced search
+
+4. Feed
+- Infinite scrolling
+- Instagram-style immersive feed
+- Share button
+- Copy link
+
+5. Article Screen
+- Full reading experience
+- Reading progress
+- Dynamic toolbar
+
+6. Settings
+- Theme mode
+- Font size
+
+ARCHITECTURE
+
+Follow strict Clean Architecture.
+
+data/
+domain/
+presentation/
+
+Generate:
+
+- Full source code
+- Navigation graph
+- Dependency injection
+- Retrofit services
+- Repository layer
+- ViewModels
+- Compose screens
+- Reusable UI components
+- Error handling
+- Loading states
+- Animations
+
+After each completed phase stop and wait.
+
+I will review.
+
+Generate git commit message after every phase.
+```
+
+

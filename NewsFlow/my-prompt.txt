@@ -1,0 +1,51 @@
+i want to build a news app using android kotlin 
+app name - NewsFlow
+app package name - com.buildstack.newsflow
+api - newsapi.org
+api-key = "i will provide this in antigravity in the plan " 
+
+features :
+5 screens 
+
+
+1. spalsh screen 
+simple name and icon of the app and small loading bar max witdh completing from  0 -> 100 that will load the news 
+
+2. top- headlines 
+card wise top-headlines and image 
+
+3. search news keywords -> tilte 
+
+4. feed 
+instagram type scrolling infinity and a share icon in the right corner that will copy the link of the news
+
+5 settings 
+user can set font size 
+dark mode light mode 
+
+6. acticle screen the full view of the news so that user can read it 
+
+ui/ux 
+bottom navigation - liquid glass 
+top-headlines 
+search 
+feed 
+settings 
+
+
+user stitch MCP to desing the app
+so that the app dont look like a demo app it should be creative and with good animations 
+
+instruction:
+ git commit after each phase by the user you will generate the git message 
+phase wise development 
+
+
+tools installed 
+build tools 
+platform tools 
+command lines android studio
+android studio
+
+
+new generate a complete PRD + TRD + App flow + database schema + ui/ux brief + BUILD flow + prompt for antigravity 2.0 in code block or markdown file so that i can copy and paste it 

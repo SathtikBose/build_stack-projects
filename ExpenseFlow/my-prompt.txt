@@ -1,0 +1,24 @@
+ExpenseFlow
+
+i am using antigravity + command line + platform tools + build tools but when it make app the ui looks so garbage like a demo app no colors simple not creative so i need a good design for this project viral design attrative , smooth , animation , good ui/u experience 
+
+tech stack 
+android kotlin + room database + jetpack compose 
+
+features 
+user can set monthly income 
+user can add daily expences 
+get the report in pdf any time any day 
+user and set goals like 1200 for new laptop 
+it will tell the money left by calulation 
+it will have charts for repost 
+all the operation create update delete 
+ user can reset the data so that he can continue for the next month it will reset everthing 
+
+instructions 
+- phase wise develpment 
+- after each phase it will commit and wait for the user to say next 
+- proffessional commit message 
+- production ready app 
+
+now i need a complete PRD + system achitucture + user persona flow diagram + prompt give everthing in a markdown file or code block 

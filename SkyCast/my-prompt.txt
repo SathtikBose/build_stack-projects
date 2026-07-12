@@ -1,0 +1,84 @@
+i want to build a android app using kotlin 
+app name - SkyCast
+app package name - com.buildstack.skycast
+api - open weather api 
+api key - 8e9a2659286adfb6ac1388f63f11742c
+
+features (provided by the free api )
+Current Weather Data
+5-Day / 3-Hour Weather Forecast
+Air Pollution API
+Current Air Quality
+Air Quality Forecast
+Air Quality History
+Geocoding API
+Direct Geocoding (city name → coordinates)
+Reverse Geocoding (coordinates → location)
+Weather by City Name
+Weather by Coordinates (Latitude/Longitude)
+Weather by ZIP/Postal Code
+Multiple Unit Support (Metric, Imperial, Standard)
+Multiple Language Support
+JSON Response Format
+XML Response Format
+Weather Parameters:
+Temperature
+Feels Like Temperature
+Humidity
+Atmospheric Pressure
+Wind Speed
+Wind Direction
+Cloud Coverage
+Visibility
+Sunrise/Sunset Times
+Rain Volume
+Snow Volume
+Weather Conditions & Icons
+Air Quality Parameters:
+AQI
+PM2.5
+PM10
+O₃ (Ozone)
+NO₂
+SO₂
+CO
+NH₃
+NO
+Global Coverage
+API Key Authentication
+Up to 1,000 API Calls per Day
+Up to 60 Calls per Minute
+
+ui/ix design 
+### UI/UX Design Prompt: Modern Dark Mode Mobile App Interface
+
+**Overall Aesthetic & Theme:**
+*   **Theme:** Premium, clean, modern Dark Mode UI/UX design.
+*   **Color Palette:** Deep, pure black `#000000` background or extremely dark charcoal `#121212`. High-contrast accent cards using soft, muted, pastel-like secondary colors (e.g., soft sky blue, pale buttery yellow, light lavender, pastel mint green, and muted peach).
+*   **Typography:** Clean, minimalist sans-serif typeface (similar to Inter or SF Pro). Bold, high-contrast hierarchy for titles, and smaller, muted gray text for secondary labels.
+
+**Layout & Component Styling:**
+*   **Cards & Containers:** Softly rounded rectangular cards with high corner radius (approx. 24px to 32px). Cards should have a flat design with zero or minimal drop shadows, relying entirely on background color contrast to stand out.
+*   **Grid System:** A mix of full-width feature cards and a symmetrical 2-column grid for smaller metrics/widgets. Equal, clean margins and generous negative space (padding) around elements.
+*   **Icons & Badges:** Minimalist, thin-line vector icons. Dynamic numerical badges or statuses enclosed in small, pill-shaped high-contrast capsules with bold text.
+*   **Buttons:** Full-width pill-shaped (fully rounded) buttons. Primary call-to-action buttons should use solid bright white with dark text, while secondary contextual buttons inside cards use a contrasting solid black background.
+
+**Visual Assets & Illustration Style:**
+*   **3D Elements:** High-fidelity, smooth, clay-textured 3D illustrations/emojis centered within cards or featured prominently on onboarding screens. The 3D models should have realistic soft lighting, glossy or matte finishes, and vibrant colors that pop against the dark background.
+*   **List Views:** Clean row layouts with circular profile avatars on the left, a bold title and small subtext in the center, and a compact, pill-shaped rating or status badge on the right. 
+
+**Navigation & System Elements:**
+*   **Top Bar:** Minimalist status bar displaying system time and icons, a profile avatar, and simple, thin-lined icon buttons (like a '+' or notification bell) enclosed in subtle dark gray circles.
+*   **Bottom Navigation Bar:** Floating or integrated dark bottom navigation dock with a pill-shaped active state indicator highlighting the selected minimal outline icon.
+
+instruction : 
+phase wise development 
+commit after each stable build 
+use latest builds 
+
+
+addtional info 
+i have installed 
+android studio, command line , platfrom tool , build tools installed in my stytem 
+
+generate a full PRD + TRD + app flow + database schema + ui/ux brief (polish it more so that it dont look like a regualr demo app) + prompt for antigravity  2.0 to build this production ready app give me this in a markdown / codeblock 
