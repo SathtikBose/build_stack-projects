@@ -1,0 +1,57 @@
+You are a senior web developer and conversion-focused copywriter. Build a complete, single-file HTML landing page for a premium headphone brand launch.
+
+## BRAND: VOID™
+- **Positioning**: "Silence, Engineered." — Premium audio for creators, audiophiles, and deep-work professionals.
+- **Target Audience**: 25-40 year old professionals, music producers, remote workers, design-conscious consumers.
+- **Price Point**: $349 (flagship), $249 (standard)
+- **Tone**: Minimalist, confident, technical-but-accessible, dark aesthetic with electric accent colors.
+
+## THE PRODUCT: VOID ONE
+**Core Specs (feature prominently):**
+- 45mm Beryllium-coated drivers
+- Hybrid Active Noise Cancellation (-42dB)
+- 60-hour battery life (with ANC on)
+- Spatial Audio with head tracking
+- Multipoint Bluetooth 5.3 (2 devices simultaneously)
+- Memory foam ear cushions with cooling gel
+- Fold-flat design with aluminum carry case
+- Quick charge: 10 min = 5 hours playback
+
+**Key Differentiators:**
+- "Void Space" — proprietary ANC algorithm that adapts to your environment in real-time
+- "Transparency Mode" that actually sounds natural (not tinny)
+- Sustainable: Recycled aluminum frame, vegan leather, plastic-free packaging
+
+## DESIGN REQUIREMENTS:
+1. **Hero Section**: Immersive, dark theme, product hero shot (use a high-quality placeholder or CSS representation), headline, subheadline, primary CTA ("Pre-Order Now — Ships Sept 15"), secondary CTA ("Experience the Specs")
+2. **Problem/Agitation**: "Your current headphones are lying to you" — address pain points: battery anxiety, uncomfortable long sessions, fake ANC, plastic build quality
+3. **Feature Grid**: 6 cards showcasing the specs above with icons/illustrations (use Lucide icons, Font Awesome, or pure CSS/SVG)
+4. **Social Proof**: 3 testimonial cards from: Grammy-winning producer, software engineer, frequent traveler
+5. **Technical Deep-Dive**: An interactive or visually engaging section explaining the Beryllium drivers and "Void Space" ANC technology
+6. **Comparison Table**: VOID ONE vs. Sony WH-1000XM5 vs. AirPods Max vs. Bose QC Ultra (compare: price, battery, driver size, weight, multipoint)
+7. **Pricing Tiers**: Clean pricing cards for Flagship ($349) and Standard ($249) with clear feature differentiation
+8. **FAQ Accordion**: 5 questions covering battery, warranty (2 years), compatibility, return policy (30 days), sustainability
+9. **Final CTA + Footer**: Urgency element ("Founding Member pricing ends in 72 hours"), email capture, footer with minimal links
+
+## TECHNICAL CONSTRAINTS:
+- Single HTML file (CSS in `<style>`, JS in `<script>`)
+- Responsive (mobile-first, breakpoints at 768px and 1024px)
+- No external dependencies except: Google Fonts (suggest Inter or Space Grotesk), and a CDN for icons if needed
+- Dark mode only (#0a0a0a background, #ffffff text, #00f0ff or #ff3e3e as accent — choose one consistent accent)
+- Smooth scroll behavior, subtle animations on scroll (fade-up or slide-in), hover states on all interactive elements
+- Performance-conscious: no heavy images (use CSS gradients, SVG patterns, or placeholder services like placehold.co with brand-appropriate colors)
+
+## COPY REQUIREMENTS:
+- Headline must be punchy and benefit-driven (not just "VOID ONE")
+- No generic filler text like "Lorem ipsum" or "Welcome to our website"
+- Use power words: engineered, precision, immersive, relentless, pure
+- Include one "mic drop" stat highlighted visually (e.g., "60 Hours. Zero Compromise.")
+- All buttons must have action-oriented microcopy
+
+## DELIVERABLE:
+Provide the complete, production-ready HTML file. The page should feel like it belongs alongside Apple, Nothing, or Master & Dynamic — not a bootstrap template. Every pixel should justify the $349 price tag.
+
+BONUS (separates good from great):
+- Add a subtle WebGL/Three.js audio visualizer or canvas-based particle effect in the hero background
+- OR implement a "Sound Profile" interactive demo where users can toggle between EQ presets (Neutral, Bass Boost, Spatial) that visually animates the page
+- OR add a "Noise Cancellation Simulator" — a slider that visually demonstrates ANC levels from 0% to 100%
