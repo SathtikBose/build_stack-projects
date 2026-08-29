@@ -1,0 +1,31 @@
+Build the **AP Production** project as a complete, production-ready application.
+
+**First, read every `.md` file inside the `/docs` folder completely.** These documents contain the complete requirements, PRD, TRD, UI/UX specifications, app flow, build flow, database design, system rules, and development instructions. Treat them as the source of truth.
+
+Then build the entire project as a **production-ready monorepo** with:
+
+* Android app using Kotlin with package name `com.buildstack.approduction`
+* Node.js + Express.js backend
+* MongoDB database
+* Secure authentication
+* Production data entry and management
+* Date-based and date-range reporting
+* CSV report generation
+* Draft/state persistence
+* Production-ready security and validation
+* User-friendly professional UI/UX
+* Render-ready backend deployment configuration
+
+Follow every requirement and rule in the `/docs` folder strictly, especially the exact machine sequence, build/test process, security requirements, and database design.
+
+Build the project **phase by phase**. After each phase, strictly follow:
+
+```text
+BUILD → TEST → FIX → TEST AGAIN → COMMIT TO GIT
+```
+
+Always test the Android application using Gradle builds. Do not skip testing or commit unstable code.
+
+Do not create a generic AI-looking demo. Build a polished, professional, reliable product that is ready for real-world production use.
+
+If any important information required for implementation is missing or conflicts between documentation files, stop and ask me before proceeding. Otherwise, begin building the project now.
