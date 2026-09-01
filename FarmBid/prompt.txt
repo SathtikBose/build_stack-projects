@@ -1,0 +1,40 @@
+Read the entire `/docs` folder and carefully understand every `.md` file before writing any code. The documentation is the source of truth for the FarmBid project.
+
+Create the project as a production-ready monorepo with separate Android and backend applications. Use the existing project requirements, architecture, database schema, API endpoints, UI/UX brief, instructions, and build flow.
+
+Suggested structure:
+
+```text
+farmbid/
+├── apps/
+│   ├── android/
+│   └── backend/
+├── docs/
+├── packages/
+│   └── shared/          # only if needed
+├── .github/
+│   └── workflows/
+├── README.md
+├── .gitignore
+└── .env.example
+```
+
+Requirements:
+
+* Read all documentation first and do not skip any requirement.
+* Treat `/docs` as the source of truth.
+* Resolve conflicts between documents before implementation and ask me if a critical requirement is unclear.
+* Follow the phase-by-phase build flow in `build-flow.md`.
+* Follow the build → test → fix → verify → commit loop from `instruction.md`.
+* Build the backend with Node.js, Express.js, MongoDB, Firebase Auth, and Cloudinary.
+* Build the Android app with Kotlin and Jetpack Compose.
+* Use Google Stitch designs as defined in the UI/UX documentation before implementing major UI screens.
+* Keep the architecture clean, scalable, secure, and production-ready.
+* Never hardcode secrets or commit `.env` files.
+* Add proper validation, authentication, authorization, error handling, logging, environment configuration, and tests.
+* Run `gradle build` after each stable Android phase.
+* Test backend APIs and Android integration after each stable phase.
+* Do not skip features or implement fake/mock functionality as the final implementation.
+* Use professional Git commit messages after every stable phase.
+
+First, analyze the documentation and create the complete production-ready monorepo structure. Show me the implementation plan and any critical conflicts or missing requirements before building the full project.
