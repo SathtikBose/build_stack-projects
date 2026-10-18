@@ -1,0 +1,34 @@
+1st prompt :-
+
+Use the REA tools to investigate the Joplin desktop app at
+C:\Users\<YourName>\AppData\Local\Programs\Joplin\resources\app.asar
+(read-only analysis; do not modify the app).
+
+Question: how does the "Go to Anything" quick switcher (Ctrl+G) work?
+How does it search notes, how are results ranked, and how does the UI
+talk to the main process?
+
+Show me the evidence (modules, files, IPC channels) and list what you
+could not confirm.
+
+Then build my OWN original version of this quick switcher in the current
+folder: a small web component with sample notes, instant filtering, and
+keyboard navigation (up/down/enter/esc), plus basic tests. Re-implement
+the behavior in your own code; do not copy Joplin's code.
+
+
+2nd prompt :-
+
+Use REA's browser analysis on https://en.wikipedia.org/wiki/Jamshedpur.
+
+Investigate the hover link-preview card that appears when I hover an
+internal article link on desktop. Find: which script handles it, what
+network request it makes (URL pattern and response fields), and how it
+handles delay, positioning and closing.
+
+Show the evidence and list what you could not confirm.
+
+Then build my OWN version in the current folder: a vanilla JS link-preview
+tooltip for a demo page that fetches summaries from Wikipedia's public API,
+with debounce, a loading state, caching and keyboard accessibility.
+Use original code and styling; do not copy Wikipedia's code or assets.
